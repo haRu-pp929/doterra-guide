@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>doTERRAスタートガイド：楽しむための第一歩</title>
+  <meta name="description" content="エッシェンシャルオイルについて" />
+  <!-- Google Fonts（例） -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- JS -->
+  <script src="assets/js/script.js" defer></script>
+  
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-lg my-navbar">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">doTERRAスタートガイド：楽しむための第一歩</span>
+    </div>
+  </nav>
+
+  <div class="my-3"></div>
+
+  <!-- Vueアプリ -->
+  <div id="app">
+    <div class="accordion" id="myAccordionParent">
+      <!-- 親メニューをループ -->
+      <div class="accordion-item my-accordion-item" v-for="(menu, index) in menus" :key="index">
+        <!-- メニュータイトル -->
+        <h2 class="accordion-header" :id="'heading' + (index + 1)">
+          <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse"
+                  :data-bs-target="'#collapse' + (index + 1)"
+                  aria-expanded="false"
+                  :aria-controls="'collapse' + (index + 1)">
+            {{ menu.title }}
+          </button>
+        </h2>
+
+        <!-- メニュー中身 -->
+        <div :id="'collapse' + (index + 1)" class="accordion-collapse collapse"
+             :aria-labelledby="'heading' + (index + 1)"
+             data-bs-parent="#myAccordionParent">
+          <div class="accordion-body">
+            
+            <!-- リストがある場合 -->
+            <ul v-if="menu.items && menu.items.length">
+              <li v-for="(item, itemIndex) in menu.items" :key="itemIndex">
+                <a :href="item.link" target="_blank">{{ item.text }}</a>
+              </li>
+            </ul>
+
+            <!-- サブアコーディオンがある場合 -->
+            <div class="accordion mt-2" :id="'subAccordion' + index" v-if="menu.submenus && menu.submenus.length">
+              <div class="accordion-item1" v-for="(submenu, subIndex) in menu.submenus" :key="subIndex">
+                <h2 class="accordion-header" :id="'subHeading' + index + '-' + subIndex">
+                  <button class="accordion-button collapsed" type="button"
+                          data-bs-toggle="collapse"
+                          :data-bs-target="'#subCollapse' + index + '-' + subIndex"
+                          aria-expanded="false"
+                          :aria-controls="'subCollapse' + index + '-' + subIndex">
+                    {{ submenu.title }}
+                  </button>
+                </h2>
+                <div :id="'subCollapse' + index + '-' + subIndex"
+                     class="accordion-collapse collapse"
+                     :aria-labelledby="'subHeading' + index + '-' + subIndex"
+                     :data-bs-parent="'#subAccordion' + index">
+                  <div class="accordion-body">
+                    <ul>
+                      <li v-for="(item, itemIndex) in submenu.items" :key="itemIndex">
+                        <a :href="item.link" target="_blank">{{ item.text }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="my-3"></div>
+
+  <nav class="navbar navbar-expand-lg my-navbar">
+    <div class="container-fluid">
+      <span class="navbar-brand m-->b-0 h1">セミナー・イベント一覧</span>
+    </div>
+  </nav>
+  
+  <div>
+      <table class="seminar list">
+          <tr>
+              <th>日付</th>
+              <th>イベント名</th>
+              <th>場所・リンク</th>
+          </tr>
+          <tr>
+              <td>7月12日土曜日</td>
+              <td>アロマタッチトレーニング 10時</td>
+              <td>千葉県市川</td>
+          </tr>
+          <tr>
+              <td>7月19日土曜日</td>
+              <td>doTERRA マルシェ（リアル）10時 - 15時<br>無料体験 7ブース 参加費2000円</td>
+              <td>オービック御堂筋<br>ご希望の方は和田さんまで</td>
+          </tr>
+          <tr>
+              <td>7月23日水曜日</td>
+              <td>中戸川先生のミネラル講座（東京本社リアル）<br>10：30～12：30 参加費1500円 午後からビジネスセミナー</td>
+              <td><a href="https://www.reservestock.jp/inquiry/MDE3MjBjMjk3Z" target="_blank">申し込みはこちら</a></td>
+          </tr>
+          <tr>
+              <td>8月11日月曜日</td>
+              <td>アロマタッチトーレーニング（リアル） 10時－17時</td>
+              <td>大阪：東三国駅 徒歩10分</td>
+          </tr>
+          <tr>
+              <td>10月29日水曜日</td>
+              <td>ジャパンコンベンション<br>横浜アリーナ</td>
+              <td><a href="https://www.doterra-japan-2025-inspire.com/" target="_blank">申し込みはこちら</a></td>
+          </tr>
+          <tr>
+              <td>10月30日木曜日</td>
+              <td>ジャパンコンベンション<br>横浜アリーナ</td>
+              <td>チケットあります！<br>ご参加希望の方は和田さんまで</td>
+          </tr>
+          <tr>
+              <td></td>
+              <td>随時更新中...</td>
+              <td></td>
+          </tr>
+      </table>
+  </div>
+
+  <footer>Laetitia</footer>
+
+	
+	<!-- AOS JS -->
+	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+	<script>
+	  AOS.init();
+	</script>
+
+  <!-- スクリプト -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</body>
+</html>
