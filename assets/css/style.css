@@ -2,6 +2,10 @@
       background-color:#F5F5DC;
     }
 
+    .navbar-brand mb-0 h1{
+        font-size: 30%;
+    }
+
     .my-navbar {
       background-color: #6F4E37;
       padding: 10px 15px;
